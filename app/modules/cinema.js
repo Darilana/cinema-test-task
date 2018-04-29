@@ -59,6 +59,5 @@ angular.module('myApp.cinema', ['ngRoute'])
             const toCommentIndex = $scope.films.indexOf(toComment[0]);
             $scope.films[toCommentIndex].comments.push(comment);
             localStorageService.set('films', $scope.films);
-            console.log(comment);
         }
     });
