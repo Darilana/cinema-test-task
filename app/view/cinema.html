@@ -1,0 +1,104 @@
+<md-content layout-padding>
+    <md-toolbar class="md-hue-2">
+        <div class="md-toolbar-tools">
+            <h2 flex md-truncate>Films library</h2>
+            <md-button class="md-icon-button" aria-label="More" ng-click="toggleAddMovieMenu()">
+                <md-icon ng-if="isAddMovieMenuOpened">close</md-icon>
+                <md-icon ng-if="!isAddMovieMenuOpened">add</md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <div class="md-padding" layout-xs="column" layout="row" layout-align="center center" ng-if="isAddMovieMenuOpened">
+        <div flex-xs flex-gt-xs="50" layout="column" layout-padding>
+            <md-card>
+                <div layout="column" ng-cloak class="md-inline-form">
+                    <md-content layout-padding>
+                        <form name="movieForm" class="movieForm">
+                            <div layout-gt-sm="column" class="col-xs-7">
+                                <label>TITLE</label>
+                                <input ng-model="movie.title" class="form-control">
+                            </div>
+                            <div layout-gt-sm="column" class="col-xs-7">
+                                <label>YEAR</label>
+                                <input ng-model="movie.year" class="form-control">
+                            </div>
+                            <div layout-gt-sm="column" class="col-xs-7">
+                                <label>COUNTRY</label>
+                                <input ng-model="movie.country" class="form-control">
+                            </div>
+                            <div layout-gt-sm="column" class="col-xs-7">
+                                <label>GENRE</label>
+                                <input ng-model="movie.genre" class="form-control">
+                            </div>
+                            <div layout-gt-sm="column" class="col-xs-7">
+                                <label>POSTER (LINK)</label>
+                                <input ng-model="movie.poster" class="form-control">
+                            </div>
+                            <div layout-gt-sm="column" class="col-xs-7">
+                                <label>DESCRIPTION</label>
+                                <textarea ng-model="movie.description" rows="5" class="form-control"></textarea>
+                            </div>
+                            <div class="col-xs-12">
+                                <button class="btn btn-danger" ng-click="toggleAddMovieMenu()">Cancel</button>
+                                <button class="btn btn-info" ng-click="saveMovie()">Add</button>
+                            </div>
+                        </form>
+                    </md-content>
+                </div>
+            </md-card>
+        </div>
+    </div>
+    <div class="md-padding" layout-xs="column" layout="row" layout-align="center center" ng-repeat="film in films">
+        <div flex-xs flex-gt-xs="50" layout="column" class="movieForm">
+            <md-card>
+                <div class="col-xs-12 movieShowCard padding-md" blurred blurred-src="film.poster">
+                    <div class="col-xs-4 padding-md">
+                        <div class="md-media-lg card-media"></div>
+                        <img ng-src="{{film.poster}}" class="md-card-image" alt={{film.title}} height="300" width="200">
+                    </div>
+                    <div class="col-xs-8 padding-md">
+                        <h1 class="film-title">{{film.title}}</h1>
+                        <p>{{film.description}}</p>
+                        <table>
+                            <tbody>
+                            <tr>
+                                <td>COUNTRY</td>
+                                <td>{{film.country}}</td>
+                            </tr>
+                            <tr>
+                                <td>YEAR</td>
+                                <td>{{film.year}}</td>
+                            </tr>
+                            <tr>
+                                <td>GENRE</td>
+                                <td>{{film.genre}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <button class="btn btn-danger" ng-click="removeMovie(film.id)">Delete</button>
+                        <button class="btn btn-info" ng-click="editMovie(film.id)">Edit</button>
+                    </div>
+                </div>
+                <div class="comments-block">
+                    <div>
+                    <span>
+                        <strong>Comments: {{film.comments.length}}</strong>
+                        <md-icon ng-click="film.showComments = true" ng-if="!film.showComments">keyboard_arrow_up</md-icon>
+                        <md-icon ng-click="film.showComments = false" ng-if="film.showComments">keyboard_arrow_down</md-icon>
+                    </span>
+                    </div>
+                    <div ng-show="film.showComments">
+                        <div ng-repeat="comment in film.comments track by $index" >
+                            <p class="comment border">{{comment}}</p>
+                        </div>
+                    </div>
+                    <div>
+                        <input ng-model="comment" class="form-control" placeholder="Add your comment">
+                        <button class="btn btn-info" ng-click="addComment(film.id, comment); comment=''">Add</button>
+                    </div>
+                </div>
+            </md-card>
+        </div>
+    </div>
+
+</md-content>

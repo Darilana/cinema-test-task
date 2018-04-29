@@ -1,0 +1,83 @@
+/* app css stylesheet */
+
+.padding-xs { padding: .25em; }
+.padding-sm { padding: .5em; }
+.padding-md { padding: 1em; }
+
+.menu {
+  list-style: none;
+  border-bottom: 0.1em solid black;
+  margin-bottom: 2em;
+  padding: 0 0 0.5em;
+}
+
+.menu:before {
+  content: "[";
+}
+
+.menu:after {
+  content: "]";
+}
+
+.menu > li {
+  display: inline;
+}
+
+.menu > li + li:before {
+  content: "|";
+  padding-right: 0.3em;
+}
+
+form .add-films-form {
+  padding-left: 20px;
+}
+
+md-card .md-inline-form md-content {
+  background: white;
+}
+
+.movieForm .btn.btn-info, .btn.btn-danger {
+  border-radius: 20px;
+  padding: 10px 50px;
+}
+
+.movieForm {
+  padding: 10px 40px;
+}
+
+.movieForm>div {
+  margin-bottom: 20px;
+}
+
+.movieShowCard {
+  color: #FFFFFF;
+}
+.bg-blur {
+  position: absolute;
+  min-height: 100%;
+  height: auto;
+  display: block;
+  top: 0;
+  max-height: none;
+  left: 0;
+  width: 100%;
+}
+.comments-block {
+  padding: 10px 40px;
+}
+.comments-block>div>span {
+  color: darkorange;
+}
+.comments-block input {
+  margin: 20px 0;
+}
+.comment.border {
+  margin-bottom: 0;
+  border-bottom: #ccc 2px solid;
+}
+.film-title {
+  margin-top: 0;
+}
+.movieShowCard table td {
+  padding: 5px 10px;
+}
